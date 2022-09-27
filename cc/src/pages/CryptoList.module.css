@@ -1,0 +1,45 @@
+
+.cryptoList{
+    background-color: #080808;
+    color: white;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+.cryptoList h1{
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.coinTable{
+    width: 100%;
+    table-layout: auto;
+    display: table;
+    border-collapse: collapse;
+}
+.coinTable td{
+    max-width: 60px;
+    text-align: center;
+}
+.coinRow td:nth-child(3){
+    text-align: start;
+}
+.coinTable thead{
+    /* border-bottom: 1px solid #171717; */
+}
+.coinTable th{
+    position: sticky;
+    top: 0;
+    background: #080808;
+    padding: 5px;
+}
+.nameTh{
+    text-align: start;
+    position: relative;
+    left: 22px;
+}
+tbody tr:hover{
+    background: #121418;
+    cursor: pointer;
+}
