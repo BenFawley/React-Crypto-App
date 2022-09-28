@@ -1,15 +1,9 @@
 import React from 'react';
+import ChartBar from './ChartBar';
 import styles from './Coin.module.css';
 
 const Coin = ({ id, img, name, symbol, price, priceChange24, marketCap, volume, supply, circSupply, rank }) => {
-
-    // Format numbers to appear with commas
-    // error check max supply - may be null for Proof of Stake coins e.g. ETH
-    // Add ID for each coin from API  
     
-    const supplyPercentage = circSupply / supply * 100;
-    console.log(supplyPercentage.toFixed(2));
-
   return (
     <tr id={id} className={styles.coinRow}>
         <td>{rank}</td>
@@ -23,7 +17,7 @@ const Coin = ({ id, img, name, symbol, price, priceChange24, marketCap, volume, 
           <p>{circSupply.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0})}
             <span>{symbol.toUpperCase()}</span>
           </p>
-
+          {supply != null && <ChartBar circSupply={circSupply} maxSupply={supply} />}
         </td>
     </tr>
   )

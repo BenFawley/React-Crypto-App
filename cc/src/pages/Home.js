@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import Banner from '../components/UI/Banner';
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <Banner />
   )
 }
 

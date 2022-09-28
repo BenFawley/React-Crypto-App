@@ -1,0 +1,25 @@
+.bannerWrap{
+    position: relative;
+}
+.bannerText{
+    position: absolute;
+    top: 9%;
+    left: 13%;
+    width: 40%;
+}
+.bannerText{
+    color: white;
+    font-size: 35px;
+}
+.bannerText p{
+    font-size: 23px;
+    color: #8c8b8b;
+    width: 70%;
+    margin-top: 0;
+}
+.bannerText h1{
+    margin-bottom: 15px;
+}
+.bannerText span{
+    color: #8347e5;
+}
