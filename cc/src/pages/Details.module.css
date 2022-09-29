@@ -1,0 +1,38 @@
+.detailsWrapper{
+    max-width: 1600px;
+    margin: 40px auto 0 auto;
+    padding: 10px 40px;
+    background:#121418;
+    border-radius: 20px;
+}
+.icon{
+    width: 90px;
+    height: 90px;
+}
+.title{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.name{
+    margin-left: 30px;
+    color: white;
+    background-color: #21242c;
+}
+.name span{
+    padding-left: 10px;
+    font-size: 15px;
+    color: #8c8b8b;
+}
+.name h2{
+    font-size: 35px;
+}
+.percent{
+    font-size: 17px;
+    position: relative;
+    top: -8px;
+}
+.breadcrumbs{
+    color: #8c8b8b;
+    padding-bottom: 10px;
+}

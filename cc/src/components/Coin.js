@@ -1,11 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import ChartBar from './ChartBar';
 import styles from './Coin.module.css';
 
 const Coin = ({ id, img, name, symbol, price, priceChange24, marketCap, volume, supply, circSupply, rank }) => {
-    
+  
+  let navigate = useNavigate();
+
   return (
-    <tr id={id} className={styles.coinRow}>
+    <tr id={id} className={styles.coinRow} onClick={()=>{navigate(`/coin/${id}`)}}>
         <td>{rank}</td>
         <td className={styles.coinImg}><img src={img} alt={name + "Symbol"} /></td>
         <td className={styles.coinName}><h3>{name}<span>{symbol.toUpperCase()}</span></h3></td>
