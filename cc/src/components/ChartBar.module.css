@@ -4,8 +4,6 @@
     flex-direction: column;
     align-items: center;
     max-width: 130px;
-    margin-left: auto;
-    margin-right: auto;
     position: relative;
     top: -5px;
   }

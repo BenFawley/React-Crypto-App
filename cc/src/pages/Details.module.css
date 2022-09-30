@@ -17,7 +17,6 @@
 .name{
     margin-left: 30px;
     color: white;
-    background-color: #21242c;
 }
 .name span{
     padding-left: 10px;
@@ -35,4 +34,10 @@
 .breadcrumbs{
     color: #8c8b8b;
     padding-bottom: 10px;
+}
+.marketData{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
 }

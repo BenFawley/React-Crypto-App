@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ChartBar.module.css';
 
-const ChartBar = ({ circSupply, maxSupply }) => {
+const ChartBar = ({ circSupply, maxSupply, margin }) => {
 
     let barFillWidth = 0;
     if(circSupply > 0){
@@ -9,7 +9,7 @@ const ChartBar = ({ circSupply, maxSupply }) => {
     }
 
   return (
-    <div className={styles.chartBar}>
+    <div className={styles.chartBar} style={{margin: margin}}>
         <div className={styles.chartBarInner}>
             <div className={styles.chartBarFill} style={{width: barFillWidth + "%"}}></div>
         </div>

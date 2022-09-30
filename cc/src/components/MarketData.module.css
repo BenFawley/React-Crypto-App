@@ -1,0 +1,23 @@
+.marketDataItem{
+    background: #21242c;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 24%;
+    max-width: 250px;
+}
+.marketDataTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.marketTitle p:nth-child(2):hover{
+    cursor: pointer;
+}
+.symbol{
+    padding-left: 10px;
+    font-size: 15px;
+    color: #8c8b8b;
+}
