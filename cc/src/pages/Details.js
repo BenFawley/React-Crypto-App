@@ -4,14 +4,19 @@ import styles from './Details.module.css';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
 import MarketData from '../components/MarketData';
 import HistoryChart from '../components/HistoryChart';
+import ChartFilter from '../components/ChartFilter';
 
 const Details = () => {
   const [coin, setCoin] = useState(null);
-  const [params, setParams] = useState({
-
-  });
-
+  // const [time, setTime] = useState('7D');
+  // const [frequency, setFrequency] = useState('daily');
+  // const [filterVariable, setFilterVariable] = useState('Price');
   const { id } = useParams();
+  const [filterOptions, setFilterOptions] = useState({
+    time: '7D',
+    filterVariable: 'Market Cap',
+    frequency: 'daily'
+  })
   
   // https://dribbble.com/shots/16421971-Crypto-Trading-Website
   //https://www.google.com/search?q=crypto+dashboard&client=firefox-b-d&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjWl46e6rr6AhWHg1wKHSxcBt0Q_AUoAXoECAEQAw&biw=958&bih=954&dpr=1#imgrc=1YwbVXJ8tfcIUM
@@ -30,6 +35,36 @@ const Details = () => {
       return found;
     });
     setCoin(obj);
+  }
+
+  const handleTimeFilter = (filter) => {
+    //EDIT LOGIC TO ACCOUNT FOR PRICE/MARKET CAP FILTER AS WELL AS SAME HANDLER FUNCTION IS USED
+    //THIS LOGIC IS CURRENTLY BROKEN FOR SWITCHING BETWEEN PRICE/MC- MAY NEED REDUCER
+    if(filter === 'Market Cap'){
+      setFilterOptions({
+        ...filterOptions,
+        filterVariable: 'Market Cap',
+      })
+    }
+    if(filter === 'Price'){
+      setFilterOptions({
+        ...filterOptions,
+        filterVariable: 'Price',
+      })
+    }
+    if(filter === '1D'){
+        setFilterOptions({
+          ...filterOptions,
+          time: filter,
+          frequency: 'hourly',
+        })
+      }else{
+      setFilterOptions({
+        ...filterOptions,
+        time: filter,
+        frequency: 'daily',
+      })
+    }
   }
 
   return (
@@ -55,10 +90,37 @@ const Details = () => {
         <MarketData data={coin.ath} dataChange={coin.ath_change_percentage} title={"All Time High"} desc={"The All-Time High is the highest price ever reached by a cryptocurrency."} currency={"yes"}/>
       </div>
       <div className={styles.chart}>
-        <HistoryChart id={coin.id}/>
+        <h2>Price Chart</h2>
+        <div className={styles.chartFilterOptions}>
+          <ChartFilter filterOptions={['Price', 'Market Cap']} onClick={handleTimeFilter} background={filterOptions.filterVariable}/>
+          <ChartFilter filterOptions={['1D', '7D', '30D', ]} onClick={handleTimeFilter} background={filterOptions.time}/>
+        </div>
+        <HistoryChart id={coin.id} time={filterOptions.time} frequency={filterOptions.frequency} filterVariable={filterOptions.filterVariable}/>
       </div>
     </div>
   )
 }
 
 export default Details
+
+
+
+// if(filter === 'Market Cap'){
+//   setFilterVariable('Market Cap');
+//   if(filter == '1D'){
+//     setFrequency('hourly');
+//     setTime(filter);
+//   } else{
+//     setTime(filter);
+//     setFrequency('daily');
+//   }
+// }else {
+//   setFilterVariable('Price');
+// if(filter == '1D'){
+//   setFrequency('hourly');
+//   setTime(filter);
+// } else{
+//   setTime(filter);
+//   setFrequency('daily');
+// }
+// }

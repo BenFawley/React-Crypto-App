@@ -23,35 +23,63 @@ import {
     Legend
   );
 
-const HistoryChart = ({ id }) => {
+    const HistoryChart = ({ id, time, frequency, filterVariable }) => {
+
+    console.log(filterVariable);
 
     const [data, setData] = useState([])
-    const [time, setTime] = useState("7");
     const [price, setPrice] = useState([]);
 
     useEffect(()=>{
         fetchData(id);
-    }, [time])
+    }, [time, frequency])
 
     const fetchData = async (id) => {
         // const request = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1`)
-        const request = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${time}&interval=daily`)
+        const request = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${time}&interval=${frequency}`)
         .then((res)=>res.json());
-        const x = request.prices.map(value=>{
-            const month = new Date(value[0]).getMonth() + 1;
-            let date = new Date(value[0]).getDate() + "/" + month;
-            return date;
-        })
-        const y = request.prices.map(value=>{
-            return value[1].toFixed(2);
-        })
+        const x = formatTime(request);
+        const y = formatPrice(request);
+        console.log(request);
         setData(x);
         setPrice(y);
     }
 
-    const handleFilterByTime = (filterValue) => {
-        setTime(filterValue);
+    const formatTime = (response) => {
+        let x;
+        if(filterVariable === 'Price'){
+            let x = response.prices.map(value=>{
+                const month = new Date(value[0]).getMonth() + 1;
+                let date = new Date(value[0]).getDate() + "/" + month;
+                return date;
+            })
+            return x;
+        } else{
+            let x = response.market_caps.map(value=>{
+                const month = new Date(value[0]).getMonth() + 1;
+                let date = new Date(value[0]).getDate() + "/" + month;
+                return date;
+            })
+            return x;
+        }
     }
+    const formatPrice = (response) => {
+        let y;
+        if(filterVariable === 'Price'){
+        let y = response.prices.map(value=>{
+            return value[1].toFixed(2);
+        })
+        return y;
+    } else{
+        let y = response.market_caps.map(value=>{
+            return value[1].toFixed(2);
+        })
+        return y;
+    }
+    }
+
+    // FIX DATE LABELS SHOWING ON HOURLY CHART FOR 1D FILTER
+    // EDIT LOGIC TO FETCH MARKET CAP WHEN SELECTED
       
 
     const options = {
