@@ -1,0 +1,12 @@
+.trendingList{
+    background: #21242c;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 60px;
+    margin-left: 60px;
+}
+.sectionTitle{
+    color: white;
+    margin-left: 10px;
+    margin-top: 10px;
+}

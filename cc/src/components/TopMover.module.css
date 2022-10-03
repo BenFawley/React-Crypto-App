@@ -1,0 +1,50 @@
+.topMoverWrapper{
+    background: #21242c;
+    padding: 20px;
+    border-radius: 20px;
+    margin-right: 15px;
+    margin-left: 15px;
+    width: 33%;
+    position: relative;
+}
+.topMoverIcon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+.topMoverIcon p{
+    color: #8c8b8b;
+    margin-top: 0;
+}
+.topMoverIcon h4{
+    position: relative;
+    top: -5px;
+    margin-top: 0;
+}
+.topMoverIcon img{
+    width: 30px;
+    position: relative;
+    top: 10px;
+    margin-right: 10px;
+}
+.topMoverChart canvas{
+    width: 90% !important;
+    height: auto !important;
+}
+.topMoverFlex{
+    display: flex;
+    width: 100%;
+    margin-left: 20px;
+}
+.topMoverChart p{
+    margin-top: auto;
+    width: 30%;
+    font-size: 13px;
+    position: absolute;
+    bottom: 0px;
+}
+.topMoverPrice{
+    color: white;
+    margin: 0 0 10px 0;
+}

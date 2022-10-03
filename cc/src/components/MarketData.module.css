@@ -21,3 +21,6 @@
     font-size: 15px;
     color: #8c8b8b;
 }
+.marketDataItem svg:hover{
+    cursor: pointer;
+}

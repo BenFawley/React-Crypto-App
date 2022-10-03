@@ -1,0 +1,21 @@
+.trendingCoinWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+}
+.trendingCoinWrapper h4{
+    font-size: 13px;
+    margin: 0 15px 0 15px;
+    color: white;
+}
+.trendingCoinWrapper{
+    color: white;
+}
+.trendingCoinWrapper img{
+    width: 30px !important;
+    height: 30px !important
+}

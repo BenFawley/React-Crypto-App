@@ -3,8 +3,9 @@
     color: white;
     border-radius: 20px;
     border: none;
-    font-weight: 400;
+    font-weight: bold;
     width: 170px;
+    font-size: 14px;
 
 }
 .button:hover{

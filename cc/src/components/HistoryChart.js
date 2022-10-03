@@ -23,24 +23,20 @@ import {
     Legend
   );
 
-    const HistoryChart = ({ id, time, frequency, filterVariable }) => {
-
-    console.log(filterVariable);
+    const HistoryChart = ({ id, time, frequency, filterVariable, fill, color, hideScale }) => {
 
     const [data, setData] = useState([])
     const [price, setPrice] = useState([]);
 
     useEffect(()=>{
         fetchData(id);
-    }, [time, frequency])
+    }, [time, frequency, filterVariable])
 
     const fetchData = async (id) => {
-        // const request = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1`)
         const request = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${time}&interval=${frequency}`)
         .then((res)=>res.json());
         const x = formatTime(request);
         const y = formatPrice(request);
-        console.log(request);
         setData(x);
         setPrice(y);
     }
@@ -49,16 +45,26 @@ import {
         let x;
         if(filterVariable === 'Price'){
             let x = response.prices.map(value=>{
-                const month = new Date(value[0]).getMonth() + 1;
-                let date = new Date(value[0]).getDate() + "/" + month;
-                return date;
+                if(time !== '1D'){
+                    const month = new Date(value[0]).getMonth() + 1;
+                    let date = new Date(value[0]).getDate() + "/" + month;
+                    return date;
+                }else{
+                    const hours = new Date(value[0]).getHours() + ":00";
+                    return hours;
+                }
             })
             return x;
         } else{
             let x = response.market_caps.map(value=>{
-                const month = new Date(value[0]).getMonth() + 1;
-                let date = new Date(value[0]).getDate() + "/" + month;
-                return date;
+                if(time !== '1D'){
+                    const month = new Date(value[0]).getMonth() + 1;
+                    let date = new Date(value[0]).getDate() + "/" + month;
+                    return date;
+                }else{
+                    const hours = new Date(value[0]).getHours() + ":00";
+                    return hours;
+                }
             })
             return x;
         }
@@ -75,18 +81,22 @@ import {
             return value[1].toFixed(2);
         })
         return y;
+        }
     }
-    }
-
-    // FIX DATE LABELS SHOWING ON HOURLY CHART FOR 1D FILTER
-    // EDIT LOGIC TO FETCH MARKET CAP WHEN SELECTED
-      
 
     const options = {
         responsive: true,
         plugins: {
             legend: {
-                display: false
+                display: false,
+            }
+        },
+        scales: hideScale && {
+            x: {
+                display: false,
+            },
+            y: {
+                display: false,
             }
         },
     }
@@ -94,19 +104,22 @@ import {
         labels: [...data],
         datasets: [
             {
-                fill: false,
+                fill: fill,
                 data: [...price],
                 pointRadius: 0,
-                label: 'Test',
-                borderColor: '#8347e5',
+                label: 'Price Chart',
+                borderColor: color,
+                // backgroundColor: fill && color, 
             }
         ]
     }
 
+    // TODO: Convert daily chart to an OHLC chart with candle highs and lows
+
   return (
-    <div>
+    <>
         <Line data={chartData} options={options}/>
-    </div>
+    </>
   )
 }
 
